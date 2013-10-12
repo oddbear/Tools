@@ -1,4 +1,4 @@
-namespace EFGuidIdentityPatcher.Common
+namespace GuidIdentityPatcher.Common
 {
     public interface IPatchingInfo
     {

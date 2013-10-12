@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EFGuidIdentityPatcher.Common
+namespace GuidIdentityPatcher.Common
 {
     public class PatchingInfo : IPatchingInfo
     {

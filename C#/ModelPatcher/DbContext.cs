@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using EFGuidIdentityPatcher.Common;
+using GuidIdentityPatcher.Common;
 
 namespace GetDefaultValues
 {

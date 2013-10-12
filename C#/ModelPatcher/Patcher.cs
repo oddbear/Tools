@@ -5,7 +5,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using System.IO;
-using EFGuidIdentityPatcher.Common;
+using GuidIdentityPatcher.Common;
 
 namespace GetDefaultValues
 {

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 using System.IO;
-using EFGuidIdentityPatcher.Common;
+using GuidIdentityPatcher.Common;
 
 namespace GetDefaultValues
 {
