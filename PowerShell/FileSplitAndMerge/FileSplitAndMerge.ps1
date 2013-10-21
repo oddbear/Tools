@@ -169,10 +169,10 @@ function CreateMergeFile
         Example:
             $path = Split-Path -Parent $MyInvocation.MyCommand.Definition
             $innFiles = dir $path *.o* | %{ $_.FullName }
-            CreateMergeFile $innFiles "$path\mergefile.bat"
+            CreateMergeFile $innFiles "$path\mergefile.bat" "file.iso"
     .INPUTS
         [string[]]: Files to be included in mergefile, order does matter!
-        [string]: Output filepath.
+        [string]: Output filepath, the .bat file.
     .OUTPUTS
         [void]
     #>
@@ -180,10 +180,11 @@ function CreateMergeFile
         [Parameter(Mandatory = $true, Position = 0)]
         [object[]]$innFiles,
         [Parameter(Mandatory = $true, Position = 1)]
-        $outFile
+        $outFile,
+        $mergedFile = "merged.bin"
     )
 
-    "copy /b {1} {0}" -f "file3.bin", (($innFiles | Get-Item | %{ $_.Name }) -join " + ") | Out-File -Encoding default $outFile
+    "copy /b {1} {0}" -f $mergedFile, (($innFiles | Get-Item | %{ $_.Name }) -join " + ") | Out-File -Encoding default $outFile
 }
 
 function ComputeSha1
