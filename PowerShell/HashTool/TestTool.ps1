@@ -1,7 +1,7 @@
-﻿#testfile.ps1
+﻿#TestTool.ps1
 cls
 
-$psv2mode = $false;
+$psv2mode = $false; #Forces Powershell in V2 compatibility mode.
 
 if($psv2mode -and $PSVersionTable.PSVersion.Major -gt 2) #force testing to PSv2, no coloring or debugging in this mode.
 {
@@ -12,26 +12,23 @@ if($psv2mode -and $PSVersionTable.PSVersion.Major -gt 2) #force testing to PSv2,
 }
 
 $path = Split-Path -Parent $MyInvocation.MyCommand.Definition #Path of this script.
-$folder = ".\Folder1"
-$file = ".\SingleFile1.txt"
 
 Import-Module $path\HashTool.ps1 -Force #Force reload every time.
 
 cls
 
-#Folder:
-HashTool -path $path -hashfile $path\$folder.hash -folder $folder -type sha1 -hash -overwrite -Verbose
+#Hashtool-Hash ".\Folder1" -overwrite -Verbose
+Hashtool-Verify ".\Folder1" -Verbose | ft -Wrap
+
 Write-Host "------------- Next file --------------";
 
-HashTool $path $path\$folder.hash -folder $folder -type sha1 -verify -overwrite -Verbose
-Write-Host "------------- Next file --------------";
+Hashtool-Hash ".\SingleFile1.txt" -overwrite -Verbose
+Hashtool-Verify ".\SingleFile1.txt" -Verbose | ft -Wrap
 
-#File:
-#HashTool -path $path -hashfile $path\$file.hash -file $file -type md5 -hash -overwrite -Verbose
 #Write-Host "------------- Next file --------------";
 
-HashTool -path $path -hashfile $path\$file.hash -file $file -type md5 -verify -overwrite -Verbose
-Write-Host "------------- Next file --------------";
+#Hashtool-Hash ".\SubFolder" -rootpath "C:\Temp\Folder2" -overwrite -Verbose | ft -Wrap
+#Hashtool-Verify ".\SubFolder" -rootpath "C:\Temp\Folder2" -Verbose | ft -Wrap
 
 <#
 If hash mismatch:
