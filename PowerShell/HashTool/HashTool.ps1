@@ -145,67 +145,6 @@ function Get-SciptDirectory
     Split-Path -Parent $myInvocation.ScriptName;
 }
 
-#function Get-SciptPath
-#{
-#    <#
-#    .SYNOPSIS
-#        Finds the full path of invoker script.
-#    .DESCRIPTION
-#        Finds the full path of invoker script.
-#        Example:
-#            Get-SciptPath
-#    .INPUTS
-#    .OUTPUTS
-#        [System.String]
-#    #>
-#    $myInvocation.ScriptName;
-#}
-
-#function Get-SciptName
-#{
-#    <#
-#    .SYNOPSIS
-#        Finds the name of invoker script.
-#    .DESCRIPTION
-#        Finds the name of invoker script.
-#        Example:
-#            Get-SciptName
-#    .INPUTS
-#    .OUTPUTS
-#        [System.String]
-#    #>
-#    Split-Path -Leaf $myInvocation.ScriptName;
-#}
-
-#function Get-RelativePath
-#{
-#    <#
-#    .SYNOPSIS
-#        Finds reltive path. Inputpath must exist.
-#    .DESCRIPTION
-#        Finds the relative path from rootpath.
-#        Example:
-#            Get-RelativePath "c:\temp\test.iso" "c:\temp\"
-#    .INPUTS
-#        [string]: Input path.
-#        [string]: Root path.
-#    .OUTPUTS
-#        [System.String]
-#    #>
-#    param(
-#        [Parameter(Mandatory = $true, Position = 0)]
-#        [string]$path,
-#        [Parameter(Mandatory = $true, Position = 1)]
-#        [string]$rootpath
-#    )
-#    $tmp = Get-Location;
-#    Set-Location $rootpath;
-#    
-#    Resolve-Path $path -Relative;
-#
-#    Set-Location $tmp;
-#}
-
 function Get-FullPath
 {
     <#
