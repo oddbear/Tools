@@ -205,6 +205,11 @@ function Hashtool-Verify
     }
 
     $dir = dir $pathFull -Recurse | ?{ -Not $_.Mode.Contains("d") } | %{ $_.FullName }; #skip folders.
+    
+    if(-not $dir) {
+        Write-Warning "Nothing to hash.";
+        return;
+    }
 
     $oldfile = Import-Clixml $hashfile;
     switch ($oldfile.type) {
@@ -254,6 +259,11 @@ function Hashtool-Hash
     }
 
     $dir = dir $pathFull -Recurse | ?{ -Not $_.Mode.Contains("d") } | %{ $_.FullName }; #skip folders.
+    
+    if(-not $dir) {
+        Write-Warning "Nothing to hash.";
+        return;
+    }
 
     switch ($type) {
         'sha1' {
