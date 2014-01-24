@@ -104,9 +104,11 @@ function Format-SQLCMDexe {
     #Extract Column information:
     $cols = @();
     $colWidthTot = 0;
+    $noNameIndex = 0;
     foreach($colWidth in $Lines[1] -split " " | %{ $_.Length; }) {
+        $name = $Lines[0].Substring($colWidthTot, $colWidth).Trim();
         $cols += New-Object PSObject -Property @{
-            Name = $Lines[0].Substring($colWidthTot, $colWidth).Trim();
+            Name = if($name) { $name; } else { "(No Column Name $noNameIndex)"; $noNameIndex++; }
             StartIndex = $colWidthTot;
             Width = $colWidth;
         }
@@ -182,3 +184,7 @@ $tables[0] | ft -AutoSize; #First row only
 $tables[1] | ft -AutoSize; #Second row only
 $tables | ft -AutoSize; #Might not work with all PowerShell versions.
 $tables | Select Name, @{Name="dbidType";Expression={ $_.dbid.GetType() }; }, Mode | ft -AutoSize;
+
+$noNameColumnTable = Invoke-SQLCMDexe -Query "SELECT 1, 2;" -ServerInstance ".";
+$noNameColumnTable."(No Column Name 0)";
+$noNameColumnTable."(No Column Name 1)";
