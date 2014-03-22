@@ -1,0 +1,1 @@
+Some testing I did with OpenCV and OpenCV.Net. The OpenCV files needs to be in the bin folder of OpenCV to run.
